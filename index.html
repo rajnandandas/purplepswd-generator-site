@@ -1,0 +1,42 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PurplePswd - Password Generator</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div class="card">
+        <h2>PurplePswd</h2>
+        Enter minimum and maximum password length and get your ideal password in zero time.<br>
+        <br>
+
+        Minimum: <input type="number" id="min_length" value="8"><br>
+        Maximum: <input type="number" id="max_length" value="12">
+        <label>
+            <input type="checkbox" id="symbols" checked>Symbols
+        </label>
+        <button onclick="generate()">Generate</button>
+        
+
+        <div class="output"><p id="result"></p></div>
+        </div>
+        <script>
+            function generate() {
+                fetch("/generate", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({
+                        min_length: document.getElementById("min_length").value,
+                        max_length: document.getElementById("max_length").value,
+                        symbols: document.getElementById("symbols").checked
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("result").innerText = data.password;
+                });
+            }
+        </script>
+    </body>
+</html>
