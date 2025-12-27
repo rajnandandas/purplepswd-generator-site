@@ -14,7 +14,9 @@ The project focuses on clean logic, usability, and real-world relevance for entr
   - Numbers  
   - Special characters  
 - Copy password to clipboard  
-- Clean and minimal UI  
+- Clean and minimal UI
+- Password Slicing Features
+- Password Copying features
 
 ---
 
